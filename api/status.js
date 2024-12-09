@@ -24,7 +24,7 @@ mqttClient.on('connect', () => {
 
 // Handle incoming messages
 mqttClient.on('message', (topic, message) => {
-    if (topic === mqttTopic) {
+    if (true) {
         latestMessage = message.toString(); // Update the latest message
         console.log(`Received message on topic ${topic}: ${latestMessage}`);
     }
