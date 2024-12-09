@@ -7,7 +7,7 @@ const mqttClient = mqtt.connect(brokerUrl, {
     password: 'bassemMQTT123',
 });
 
-const mqttTopic = 'heating-system/status';
+const mqttTopic = 'heating/test';
 let latestMessage = 'No data received'; // Store the latest message
 
 // Connect to the MQTT broker and subscribe to the topic
