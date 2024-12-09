@@ -1,6 +1,5 @@
 const mqtt = require('mqtt');
 
-// MQTT client configuration
 const brokerUrl = 'mqtts://db22137176fc49dbb309bff1972cb054.s1.eu.hivemq.cloud';
 const mqttClient = mqtt.connect(brokerUrl, {
     port: 8883,
@@ -8,7 +7,6 @@ const mqttClient = mqtt.connect(brokerUrl, {
     password: 'bassemMQTT123', 
 });
 
-// MQTT connection handlers
 mqttClient.on('connect', () => {
     console.log('Connected to HiveMQ Cloud MQTT broker');
 });
@@ -17,7 +15,6 @@ mqttClient.on('error', (err) => {
     console.error('MQTT connection error:', err);
 });
 
-// Vercel API handler
 module.exports = (req, res) => {
     const { mode } = req.query;
 
