@@ -29,10 +29,10 @@ module.exports = (req, res) => {
 
     const topic = 'heating-system/ac';
 
-    mqttClient.publish(topic, mode.toUpperCase(), (err) => {
+    mqttClient.publish(topic, temp, (err) => {
         if (err) {
             console.error('Publish error:', err);
-            return res.status(500).json({ error: 'Failed to publish mode' });
+            return res.status(500).json({ error: 'Failed to publish temp' });
         }
 
         console.log(`Temp ${temp} published to topic ${topic}`);
