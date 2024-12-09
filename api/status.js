@@ -38,32 +38,12 @@ mqttClient.on('error', (err) => {
 // API handler function
 export default function handler(req, res) {
     if (req.method === 'GET') {
-        // Decode the latest message
-        const [temperature, humidity, mode] = latestMessage.split('-');
-
-        // Format the response
-        const status = {
-            temperature: `${temperature}°C`,
-            humidity: `${humidity}%`,
-            mode: decodeMode(mode),
-        };
-
+        // Return the latest message as-is
         res.status(200).json({
-            message: 'Room status retrieved successfully',
-            status,
+            message: 'Latest MQTT message retrieved successfully',
+            rawMessage: latestMessage,
         });
     } else {
         res.status(405).json({ message: 'Method not allowed' });
     }
-}
-
-// Helper function to decode the mode
-function decodeMode(mode) {
-    const modeMapping = {
-        H: 'Heating',
-        C: 'Cooling',
-        N: 'Normal',
-        D: 'Dynamic',
-    };
-    return modeMapping[mode] || 'Unknown';
 }
