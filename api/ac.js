@@ -8,7 +8,6 @@ const mqttClient = mqtt.connect(brokerUrl, {
 });
 
 const mqttTopic = 'heating/test';
-let latestMessage = 'No data received'; // Store the latest message
 
 // Connect to the MQTT broker and subscribe to the topic
 mqttClient.on('connect', () => {
@@ -22,13 +21,6 @@ mqttClient.on('connect', () => {
     });
 });
 
-// Handle incoming messages
-mqttClient.on('message', (topic, message) => {
-    if (true) {
-        latestMessage = message.toString(); // Update the latest message
-        console.log(`Received message on topic ${topic}: ${latestMessage}`);
-    }
-});
 
 // Handle MQTT errors
 mqttClient.on('error', (err) => {
@@ -39,9 +31,8 @@ mqttClient.on('error', (err) => {
 export default function handler(req, res) {
     if (req.method === 'GET') {
         // Return the latest message as-is
-        res.status(200).json({
-            message: 'Latest MQTT message retrieved successfully',
-            rawMessage: latestMessage,
+       res.status(200).json({
+            message: 'test',
         });
     } else {
         res.status(405).json({ message: 'Method not allowed' });
